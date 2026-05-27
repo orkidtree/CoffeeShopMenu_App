@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     item: { marginBottom: 12 },
     category: { fontSize: 12, fontFamily: 'Helvetica', color: '#422d04' },
     name: { fontSize: 18, fontFamily: 'Helvetica' },
-    heading: { fontSize: 24, marginBottom: 20, fontFamily: 'Helvetica' },
+    heading: { fontSize: 34, marginBottom: 20, fontFamily: 'Helvetica' },
     button: {
       alignSelf: 'flex-start',
       backgroundColor: 'transparent',
