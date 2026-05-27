@@ -1,4 +1,4 @@
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 
 const menuItems = [
     { id: '1', category: 'Hot Drinks', name: 'Cafe Latte' },
@@ -20,6 +20,9 @@ export default function App() {
                     <View style={styles.item}>
                         <Text style={styles.category}>{item.category}</Text>
                         <Text style={styles.name}>{item.name}</Text>
+                        <TouchableOpacity onPress={() => console.log(item.name)}>
+                            <Text style={styles.button}>View Item</Text>
+                        </TouchableOpacity>
                     </View> 
                 )}
             />
@@ -29,8 +32,23 @@ export default function App() {
 
 const styles = StyleSheet.create({
     container: { flex: 1, padding: 20 },
-    heading: { fontSize: 24, marginBottom: 20 },
-    item: { marginBottom: 15 },
-    category: { fontSize: 18, fontWeight: 'bold' },
-    name: { fontSize: 16 },
+    item: { marginBottom: 12 },
+    category: { fontSize: 12, fontFamily: 'Helvetica', color: '#422d04' },
+    name: { fontSize: 18, fontFamily: 'Helvetica' },
+    heading: { fontSize: 24, marginBottom: 20, fontFamily: 'Helvetica' },
+    button: {
+      alignSelf: 'flex-start',
+      backgroundColor: 'transparent',
+      borderWidth: 1,
+      borderColor: '#888',
+      paddingVertical: 6,
+      paddingHorizontal: 12,
+      borderRadius: 4,
+      marginTop: 4,
+    },
+    buttonText: {
+      fontFamily: 'Helvetica',
+      fontSize: 14,
+      color: '#333',
+    },
 }); 
