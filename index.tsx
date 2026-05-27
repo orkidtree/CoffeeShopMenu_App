@@ -6,12 +6,13 @@ const menuItems = [
     { id: '3', category: 'Hot Drinks', name: 'Espresso' },
     { id: '4', category: 'Cold Drinks', name: 'Iced Latte' },  
     { id: '5', category: 'Cold Drinks', name: 'Spanish Latte' },
+    { id: '6', category: 'Non-Coffee Drinks', name: 'House Blend Tea' },
 ];
 
 export default function App() {
     return (
         <View style={styles.container}>
-            <Text style={styles.heading}>Coffee Shop Menu</Text>
+            <Text style={styles.heading}>Kape Menu</Text>
             <FlatList
                 data={menuItems}
                 keyExtractor={(item) => item.id}
