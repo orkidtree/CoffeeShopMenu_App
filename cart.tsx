@@ -1,3 +1,4 @@
+import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { NavigationIndependentTree } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -9,33 +10,35 @@ const Stack = createStackNavigator();
 
 // ─── Cart Screen ─────────────────────────────────────────────────────────────
 function CartScreen({ navigation }: any) {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>🛒 Cart Screen</Text>
-
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate('OrderSummary')}
-      >
-        <Text style={styles.buttonText}>View Order Summary</Text>
-      </TouchableOpacity>
-    </View>
+  return React.createElement(
+    View,
+    { style: styles.container },
+    React.createElement(Text, { style: styles.title }, '🛒 Cart Screen'),
+    React.createElement(
+      TouchableOpacity,
+      {
+        style: styles.button,
+        onPress: () => navigation.navigate('OrderSummary'),
+      },
+      React.createElement(Text, { style: styles.buttonText }, 'View Order Summary')
+    )
   );
 }
 
 // ─── Order Summary Screen ─────────────────────────────────────────────────────
 function OrderSummaryScreen({ navigation }: any) {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>📋 Order Summary</Text>
-
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.goBack()}
-      >
-        <Text style={styles.buttonText}>← Back to Cart</Text>
-      </TouchableOpacity>
-    </View>
+  return React.createElement(
+    View,
+    { style: styles.container },
+    React.createElement(Text, { style: styles.title }, '📋 Order Summary'),
+    React.createElement(
+      TouchableOpacity,
+      {
+        style: styles.button,
+        onPress: () => navigation.goBack(),
+      },
+      React.createElement(Text, { style: styles.buttonText }, '← Back to Cart')
+    )
   );
 }
 
@@ -52,8 +55,16 @@ export default function App() {
           headerTitleStyle: { fontWeight: 'bold' },
         }}
       >
-        <Stack.Screen name="Cart"         component={CartScreen}         options={{ title: '🛒 My Cart' }} />
-        <Stack.Screen name="OrderSummary" component={OrderSummaryScreen} options={{ title: 'Order Summary', headerLeft: () => null }} />
+        <Stack.Screen
+          name="Cart"
+          component={CartScreen}
+          options={{ title: '🛒 My Cart' }}
+        />
+        <Stack.Screen
+          name="OrderSummary"
+          component={OrderSummaryScreen}
+          options={{ title: 'Order Summary', headerLeft: () => null }}
+        />
       </Stack.Navigator>
     </NavigationIndependentTree>
   );

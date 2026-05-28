@@ -1,6 +1,7 @@
 import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
-import { NavigationIndependentTree } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import React from 'react';
 
 const menuItems = [
     { id: '1', category: 'Hot Drinks', name: 'Cafe Latte', price: '₱160', desc: 'Milk and espresso.' },
@@ -11,15 +12,12 @@ const menuItems = [
     { id: '6', category: 'Non-Coffee Drinks', name: 'House Blend Tea', price: '₱120', desc: 'A blend of green and black teas.' },
 ];
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
-// ─── Home Screen (Coffee Menu) ───────────────────────────────────────────────
 function HomeScreen({ navigation }: any) {
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>☕ Kape Menu</Text>
-
-      {/* FlatList renders the menuItems array as a scrollable list */}
       <FlatList
         data={menuItems}
         keyExtractor={(item) => item.id}
@@ -39,20 +37,14 @@ function HomeScreen({ navigation }: any) {
   );
 }
 
-// ─── Detail Screen ───────────────────────────────────────────────────────────
 function DetailScreen({ route, navigation }: any) {
-
-  // route.params contains the data we passed when calling navigation.navigate()
   const { coffee } = route.params;
-
   return (
     <View style={styles.detailContainer}>
       <Text style={styles.detailCategory}>{coffee.category}</Text>
       <Text style={styles.detailName}>{coffee.name}</Text>
       <Text style={styles.detailPrice}>{coffee.price}</Text>
       <Text style={styles.detailDesc}>{coffee.desc}</Text>
-
-      {/* navigation.goBack() pops this screen off and returns to HomeScreen */}
       <TouchableOpacity
         style={styles.backButton}
         activeOpacity={0.8}
@@ -66,7 +58,7 @@ function DetailScreen({ route, navigation }: any) {
 
 export default function App() {
   return (
-    <NavigationIndependentTree>
+    <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
           headerStyle: { backgroundColor: '#3E1F00' },
@@ -74,18 +66,14 @@ export default function App() {
           headerTitleStyle: { fontWeight: 'bold' },
         }}
       >
-        {/* Register our two screens with the Stack */}
         <Stack.Screen name="Menu"   component={HomeScreen}   options={{ title: '☕ Coffee Shop'}} />
         <Stack.Screen name="Detail" component={DetailScreen} options={{ title: 'Coffee Details', headerLeft: () => null }} />
       </Stack.Navigator>
-    </NavigationIndependentTree>
+    </NavigationContainer>
   );
 }
 
-// ─── Styles ──────────────────────────────────────────────────────────────────
 const styles = StyleSheet.create({
-
-  // Home Screen
   container: {
     flex: 1,
     padding: 20,
@@ -128,8 +116,6 @@ const styles = StyleSheet.create({
     color: '#C1440E',
     marginTop: 4,
   },
-
-  // Detail Screen
   detailContainer: {
     flex: 1,
     padding: 28,
@@ -178,5 +164,4 @@ const styles = StyleSheet.create({
     fontFamily: 'Helvetica',
     fontWeight: '600',
   },
-
 });
