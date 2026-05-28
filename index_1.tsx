@@ -2,22 +2,26 @@ import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native
 import { NavigationIndependentTree } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
+// ─── Coffee Menu Data ────────────────────────────────────────────────────────
 const menuItems = [
-    { id: '1', category: 'Hot Drinks', name: 'Cafe Latte', price: '₱160', desc: 'Milk and espresso.' },
-    { id: '2', category: 'Hot Drinks', name: 'Cappuccino', price: '₱160', desc: 'Equal parts espresso, steamed milk, and foam.' },
-    { id: '3', category: 'Hot Drinks', name: 'Espresso', price: '₱60', desc: 'Strong black coffee brewed under pressure.' },
-    { id: '4', category: 'Cold Drinks', name: 'Iced Latte', price: '₱180', desc: 'Cold brew with milk and ice.' },
-    { id: '5', category: 'Cold Drinks', name: 'Spanish Latte', price: '₱180', desc: 'Iced latte with a hint of vanilla.' },
-    { id: '6', category: 'Non-Coffee Drinks', name: 'House Blend Tea', price: '₱120', desc: 'A blend of green and black teas.' },
+  { id: '1', category: 'Hot Drinks',  name: 'Americano',   price: '₱120', desc: 'Bold and strong black coffee brewed with espresso shots.' },
+  { id: '2', category: 'Hot Drinks',  name: 'Cappuccino',  price: '₱150', desc: 'Classic Italian coffee with equal parts espresso, steamed milk, and foam.' },
+  { id: '3', category: 'Hot Drinks',  name: 'Latte',       price: '₱160', desc: 'Smooth espresso blended with creamy steamed milk.' },
+  { id: '4', category: 'Cold Drinks', name: 'Iced Coffee', price: '₱130', desc: 'Chilled brewed coffee served over ice for a refreshing kick.' },
+  { id: '5', category: 'Cold Drinks', name: 'Frappuccino', price: '₱175', desc: 'Blended iced coffee drink topped with whipped cream.' },
 ];
 
+// ─── Stack Navigator Setup ───────────────────────────────────────────────────
+// createStackNavigator() creates a "stack" of screens.
+// Think of it like a stack of cards — you push a card when you go forward,
+// and pop it off when you press Back.
 const Stack = createStackNavigator();
 
 // ─── Home Screen (Coffee Menu) ───────────────────────────────────────────────
 function HomeScreen({ navigation }: any) {
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>☕ Kape Menu</Text>
+      <Text style={styles.heading}>☕ Coffee Shop Menu</Text>
 
       {/* FlatList renders the menuItems array as a scrollable list */}
       <FlatList
@@ -64,6 +68,10 @@ function DetailScreen({ route, navigation }: any) {
   );
 }
 
+// ─── App (Navigation Container) ─────────────────────────────────────────────
+// NavigationIndependentTree is needed because Expo Router already has its own
+// navigator running. This tells React Navigation to treat our Stack as
+// a separate, independent navigation tree so they don't conflict.
 export default function App() {
   return (
     <NavigationIndependentTree>
@@ -95,7 +103,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
-    fontFamily: 'Helvetica',
     color: '#3E1F00',
   },
   item: {
@@ -116,7 +123,6 @@ const styles = StyleSheet.create({
     marginBottom: 4,
     textTransform: 'uppercase',
     letterSpacing: 1,
-    fontFamily: 'Helvetica',
   },
   name: {
     fontSize: 18,
@@ -138,7 +144,6 @@ const styles = StyleSheet.create({
   },
   detailCategory: {
     fontSize: 13,
-    fontFamily: 'Helvetica',
     color: '#888',
     textTransform: 'uppercase',
     letterSpacing: 1.5,
@@ -146,21 +151,18 @@ const styles = StyleSheet.create({
   },
   detailName: {
     fontSize: 32,
-    fontFamily: 'Helvetica',
     fontWeight: 'bold',
     color: '#3E1F00',
     marginBottom: 8,
   },
   detailPrice: {
     fontSize: 22,
-    fontFamily: 'Helvetica',
     color: '#C1440E',
     fontWeight: '600',
     marginBottom: 20,
   },
   detailDesc: {
     fontSize: 16,
-    fontFamily: 'Helvetica',
     color: '#555',
     lineHeight: 24,
     marginBottom: 40,
@@ -175,7 +177,6 @@ const styles = StyleSheet.create({
   backButtonText: {
     color: '#FDF6EE',
     fontSize: 16,
-    fontFamily: 'Helvetica',
     fontWeight: '600',
   },
 
