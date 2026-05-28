@@ -35,11 +35,13 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 22,
+    fontFamily: 'Helvetica',
     fontWeight: 'bold',
     color: '#3E1F00',
   },
   email: {
     fontSize: 14,
+    fontFamily: 'Helvetica',
     color: '#888',
     marginBottom: 30,
   },
@@ -54,12 +56,14 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 12,
+    fontFamily: 'Helvetica',
     color: '#888',
     textTransform: 'uppercase',
     letterSpacing: 1,
   },
   value: {
     fontSize: 18,
+    fontFamily: 'Helvetica',
     fontWeight: '600',
     color: '#3E1F00',
     marginTop: 4,
